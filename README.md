@@ -32,3 +32,17 @@ App Container → PostgreSQL Container (Docker Network)
 
 ```bash
 docker compose up --build# devops-local-stack
+
+## 🔐 Configuration Management
+
+This project uses Kubernetes ConfigMap and Secret:
+
+- ConfigMap → Stores non-sensitive configuration (DB_HOST, DB_NAME, DB_USER)
+- Secret → Stores sensitive data (DB_PASS)
+
+Secrets are base64 encoded before being stored in Kubernetes.
+
+### Example:
+
+```bash
+echo -n "password" | base64
