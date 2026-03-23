@@ -18,12 +18,8 @@ spec:
         imagePullPolicy: Always  
         ports:
         - containerPort: 5000
-        env:
-        - name: DB_HOST
-          value: postgres
-        - name: DB_NAME
-          value: testdb
-        - name: DB_USER
-          value: postgres
-        - name: DB_PASS
-          value: password
+        envFrom:
+          - configMapRef:
+              name: app-config
+          - secretRef:
+              name: app-secret
