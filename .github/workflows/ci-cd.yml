@@ -24,3 +24,9 @@ jobs:
 
     - name: Push Docker Image
       run: docker push ${{ secrets.DOCKER_USERNAME }}/devops-app:${{ github.sha }}
+
+    - name: CD Step (Simulated)
+      run: |
+        echo "CD Step Triggered"
+        echo "In real scenario, this would run:"
+        echo "kubectl set image deployment/flask-app flask-app=${{ secrets.DOCKER_USERNAME }}/devops-app:${{ github.sha }}"
