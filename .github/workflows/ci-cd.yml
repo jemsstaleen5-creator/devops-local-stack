@@ -25,6 +25,11 @@ jobs:
     - name: Push Docker Image
       run: docker push ${{ secrets.DOCKER_USERNAME }}/devops-app:${{ github.sha }}
 
+    - name: CD Step (Helm)
+      run: |
+        echo "Helm upgrade command:"
+        echo "helm upgrade my-app ./helm-chart/devops-app --set image.tag=${{ github.sha }}"
+
     - name: CD Step (Simulated)
       run: |
         echo "CD Step Triggered"
